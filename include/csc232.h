@@ -18,9 +18,9 @@
 #define TRUE 1
 #define EXECUTE_BLOCK FALSE
 
-#define FINISHED_PART_1 FALSE
-#define FINISHED_PART_2 FALSE
-#define FINISHED_PART_3 FALSE
+#define FINISHED_PART_1 TRUE
+#define FINISHED_PART_2 TRUE
+#define FINISHED_PART_3 TRUE
 
 #include <algorithm>
 #include <cassert>
@@ -60,12 +60,54 @@ using std::setw;
  */
 namespace csc232
 {
-    // Add any user-defined functions prescribed in your assignment below
-    // TODO: 1.1 Declare the Shape interface below
+    //Author: Camden Crace
+    //Date: 1/30/2024
+    //Name: LAB 2
+    
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    // TODO: 2.1 Provide an inline definition of the Square class below
+    //The class shape is defined as the virtual interface.
+    class Shape
+    {
+        public: 
+        virtual double area() const = 0;
+        virtual double perimeter() const = 0;
+        //virtual methods are defined as constants to maintain program dependability.
+        virtual ~Shape() = default;
+        //default deconstructor.
+    };
+    
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    // TODO: 3.1 Provide an inline definition of the Circle class below
+    //The Square class is defined while referencing the Shape interface.
+    class Square:public Shape
+    {
+        public:
+        double perimeter() const {return side*4;}
+        double area() const {return side*side;}
+        //Under the public scope perimeter and area methods for the square shape are defined.
+        ~Square() = default;
+        //default deconstructor.
+        private: 
+        double side = 1;
+        //under the private scope "side" is initialized to a value of 1.
+    };
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+     //The Circle class is defined while referencing the Shape interface.
+    class Circle:public Shape
+    {
+        public:
+        double radius = 1.0;
+        //the radius is set to a value of 1.0 publicly.
+        double area() const {return M_PI*(radius*radius);}
+        double perimeter() const {return 2*M_PI*radius;}
+        //Under the public scope perimeter and area methods for the Circle shape are defined.
+        ~Circle() = default;
+        //default deconstructor.
+    };
+
 
     // DO NOT Modify anything below this line
 } // namespace csc232
